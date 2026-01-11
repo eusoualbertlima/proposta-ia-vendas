@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Exclusiva | Assistente IA de Vendas WhatsApp</title>
+    <meta name="description" content="Transforme seu WhatsApp em uma máquina de vendas 24h com Inteligência Artificial">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #25D366;
+            --primary-dark: #128C7E;
+            --accent: #FF6B35;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+            --gradient-1: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            --gradient-2: linear-gradient(135deg, #FF6B35 0%, #ff8f6b 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(37, 211, 102, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(18, 140, 126, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.08) 0%, transparent 40%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: var(--gradient-2);
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gradient-glass);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 8vw, 42px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-title {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 12px;
+            padding: 15px 20px;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* Features Section */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(37, 211, 102, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: rgba(37, 211, 102, 0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        /* How it Works */
+        .steps {
+            margin: 50px 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Investment Section */
+        .investment {
+            background: var(--gradient-glass);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .investment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .investment-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .investment-price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .investment-price span {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .investment-terms {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .investment-includes {
+            text-align: left;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .investment-includes h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .investment-includes li {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .investment-includes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: block;
+            width: 100%;
+            background: var(--gradient-1);
+            color: white;
+            padding: 18px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            margin: 30px 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-subtext {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: rgba(37, 211, 102, 0.08);
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .guarantee-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .guarantee h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .guarantee p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .countdown-item {
+                padding: 12px 15px;
+                min-width: 60px;
+            }
+            .countdown-number {
+                font-size: 26px;
+            }
+            .investment-price {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        ⚡ PROPOSTA EXCLUSIVA — Válida por tempo limitado!
+    </div>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="badge">✨ Proposta Personalizada</div>
+            <h1>Seu WhatsApp vendendo <span>24 horas por dia</span></h1>
+            <p>Atendimento humanizado com IA que entende seu negócio, conhece seus produtos e fecha vendas enquanto você dorme.</p>
+        </section>
+
+        <!-- Countdown -->
+        <section class="countdown-section">
+            <div class="countdown-title">⏰ Esta proposta expira em:</div>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Dias</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Min</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seg</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2 class="section-title">O que você <span>vai receber</span></h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Assistente IA Personalizado</h3>
+                    <p>IA treinada com suas conversas reais, catálogo de produtos e tom de voz da sua marca.</p>
+                    <span class="feature-tag">Atendimento 24h</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>CRM Integrado</h3>
+                    <p>Tags automáticas, histórico completo de cada cliente, organização inteligente de leads.</p>
+                    <span class="feature-tag">Gestão de Clientes</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Follow-ups Automáticos</h3>
+                    <p>Recuperação automática de leads frios, lembretes personalizados e sequências de nutrição.</p>
+                    <span class="feature-tag">Mais Vendas</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Áudios Personalizados</h3>
+                    <p>Mensagens de áudio com a sua própria voz nos momentos estratégicos do atendimento.</p>
+                    <span class="feature-tag">Humanização</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛒</div>
+                    <h3>Catálogo Completo</h3>
+                    <p>Todos os seus produtos cadastrados com variações (cores, tamanhos), preços e disponibilidade.</p>
+                    <span class="feature-tag">Venda Automática</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Transferência Inteligente</h3>
+                    <p>IA identifica quando passar para atendimento humano em casos específicos.</p>
+                    <span class="feature-tag">Controle Total</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works -->
+        <section class="steps">
+            <h2 class="section-title">Como <span>funciona</span></h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Análise & Planejamento</h4>
+                    <p>Estudamos suas conversas, produtos e forma de atender para criar a IA perfeita.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Desenvolvimento & Treinamento</h4>
+                    <p>Construímos e treinamos a IA com seu catálogo e padrão de atendimento.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Testes & Ajustes</h4>
+                    <p>Período de testes com ajustes finos para garantir atendimento impecável.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Lançamento & Suporte</h4>
+                    <p>Ativamos no seu WhatsApp + 3 meses de suporte e otimizações inclusas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment -->
+        <section class="investment">
+            <div class="investment-label">Investimento único</div>
+            <div class="investment-price"><span>R$</span> 2.800</div>
+            <div class="investment-terms">40% na aprovação • 60% na entrega</div>
+            
+            <div class="investment-includes">
+                <h4>O que está incluído:</h4>
+                <ul>
+                    <li>Assistente IA completo e personalizado</li>
+                    <li>CRM com tags e histórico de clientes</li>
+                    <li>Sistema de follow-ups automáticos</li>
+                    <li>Integração de áudios personalizados</li>
+                    <li>Catálogo completo de produtos</li>
+                    <li>3 meses de suporte pós-lançamento</li>
+                    <li>Treinamento para usar a ferramenta</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <a href="https://wa.me/5511999999999?text=Oi!%20Vi%20a%20proposta%20da%20IA%20e%20quero%20come%C3%A7ar!" class="cta-button">
+            ✅ QUERO COMEÇAR AGORA
+        </a>
+        <p class="cta-subtext">Resposta em até 2 horas no WhatsApp</p>
+
+        <!-- Guarantee -->
+        <section class="guarantee">
+            <div class="guarantee-icon">🛡️</div>
+            <h3>Garantia de Satisfação</h3>
+            <p>Se após os testes você não estiver satisfeito, devolvemos 100% do valor pago. Sem burocracia.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>Proposta exclusiva e intransferível</p>
+        <p style="margin-top: 8px; opacity: 0.6;">© 2026 — Desenvolvido com ❤️</p>
+    </footer>
+
+    <script>
+        // Countdown Timer - 3 days from page load (or saved deadline)
+        function initCountdown() {
+            const STORAGE_KEY = 'proposal_deadline';
+            let deadline;
+            
+            // Check for existing deadline in localStorage
+            const savedDeadline = localStorage.getItem(STORAGE_KEY);
+            
+            if (savedDeadline) {
+                deadline = new Date(savedDeadline);
+                // If deadline has passed, set new one
+                if (deadline < new Date()) {
+                    deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem(STORAGE_KEY, deadline.toISOString());
+                }
+            } else {
+                // First visit - set 3 day deadline
+                deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+                localStorage.setItem(STORAGE_KEY, deadline.toISOString());
+            }
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = deadline - now;
+
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.querySelector('.countdown-title').textContent = '⚠️ PROPOSTA EXPIRADA!';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Initialize
+        initCountdown();
+    </script>
+</body>
+</html>

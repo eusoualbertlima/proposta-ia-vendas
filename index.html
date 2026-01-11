@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,20 @@
     <meta name="description" content="Transforme seu WhatsApp em uma máquina de vendas 24h com Inteligência Artificial">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #25D366;
             --primary-dark: #128C7E;
             --accent: #FF6B35;
             --bg-dark: #0a0a0f;
-            --bg-card: rgba(255,255,255,0.03);
+            --bg-card: rgba(255, 255, 255, 0.03);
             --text: #ffffff;
             --text-muted: #a0a0a0;
             --gradient-1: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             --gradient-2: linear-gradient(135deg, #FF6B35 0%, #ff8f6b 100%);
-            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
         }
 
         * {
@@ -34,6 +36,44 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Expired Overlay */
+        .expired-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .expired-overlay.show {
+            display: flex;
+        }
+
+        .expired-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .expired-overlay h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .expired-overlay p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 400px;
         }
 
         /* Animated Background */
@@ -54,7 +94,7 @@
             height: 150%;
             top: -25%;
             left: -25%;
-            background: 
+            background:
                 radial-gradient(circle at 20% 80%, rgba(37, 211, 102, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(18, 140, 126, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.08) 0%, transparent 40%);
@@ -62,8 +102,15 @@
         }
 
         @keyframes bgPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
         }
 
         .container {
@@ -86,8 +133,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.85;
+            }
         }
 
         /* Hero Section */
@@ -179,7 +233,7 @@
             margin-top: 5px;
         }
 
-        /* Features Section */
+        /* Section Title */
         .section-title {
             font-size: 24px;
             font-weight: 700;
@@ -194,6 +248,40 @@
             background-clip: text;
         }
 
+        /* Problem Section */
+        .problem-section {
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .problem-list {
+            list-style: none;
+        }
+
+        .problem-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 15px;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .problem-list li:last-child {
+            border-bottom: none;
+        }
+
+        .problem-list li::before {
+            content: '😰';
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        /* Features Section */
         .features-grid {
             display: grid;
             gap: 16px;
@@ -202,7 +290,7 @@
 
         .feature-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             padding: 24px;
             backdrop-filter: blur(10px);
@@ -241,6 +329,28 @@
             margin-top: 12px;
         }
 
+        .feature-details {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-details li {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+            list-style: none;
+        }
+
+        .feature-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
         /* How it Works */
         .steps {
             margin: 50px 0;
@@ -273,6 +383,45 @@
 
         .step-content p {
             font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Tech Stack */
+        .tech-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .tech-item .icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .tech-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tech-item p {
+            font-size: 12px;
             color: var(--text-muted);
         }
 
@@ -316,14 +465,39 @@
         }
 
         .investment-terms {
-            font-size: 14px;
-            color: var(--text-muted);
+            font-size: 16px;
+            color: var(--primary);
             margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .payment-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .payment-box .label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .payment-box .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .investment-includes {
             text-align: left;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
@@ -351,6 +525,43 @@
             left: 0;
             color: var(--primary);
             font-weight: 600;
+        }
+
+        /* Client Costs Section */
+        .client-costs {
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+
+        .client-costs h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffc107;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+        }
+
+        .cost-item .name {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .cost-item .price {
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
         /* CTA Button */
@@ -407,13 +618,30 @@
             color: var(--text-muted);
         }
 
+        /* Support Section */
+        .support-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .support-highlight {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
         /* Footer */
         footer {
             text-align: center;
             padding: 40px 20px;
             font-size: 13px;
             color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 40px;
         }
 
@@ -423,213 +651,344 @@
                 padding: 12px 15px;
                 min-width: 60px;
             }
+
             .countdown-number {
                 font-size: 26px;
             }
+
             .investment-price {
                 font-size: 40px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-details {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
+    <!-- Expired Overlay -->
+    <div class="expired-overlay" id="expiredOverlay">
+        <div class="expired-icon">⏰</div>
+        <h1>Proposta Expirada</h1>
+        <p>O prazo para esta proposta exclusiva terminou. Entre em contato para solicitar uma nova proposta.</p>
+    </div>
+
     <div class="bg-animation"></div>
 
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
-        ⚡ PROPOSTA EXCLUSIVA — Válida por tempo limitado!
-    </div>
+    <div id="mainContent">
+        <!-- Urgency Banner -->
+        <div class="urgency-banner">
+            ⚡ PROPOSTA EXCLUSIVA — Válida por tempo limitado!
+        </div>
 
-    <div class="container">
-        <!-- Hero -->
-        <section class="hero">
-            <div class="badge">✨ Proposta Personalizada</div>
-            <h1>Seu WhatsApp vendendo <span>24 horas por dia</span></h1>
-            <p>Atendimento humanizado com IA que entende seu negócio, conhece seus produtos e fecha vendas enquanto você dorme.</p>
-        </section>
+        <div class="container">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="badge">✨ Proposta Personalizada</div>
+                <h1>Seu WhatsApp vendendo <span>24 horas por dia</span></h1>
+                <p>Atendimento humanizado com IA que entende seu negócio, conhece seus produtos e fecha vendas enquanto
+                    você dorme.</p>
+            </section>
 
-        <!-- Countdown -->
-        <section class="countdown-section">
-            <div class="countdown-title">⏰ Esta proposta expira em:</div>
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Dias</div>
+            <!-- Countdown -->
+            <section class="countdown-section">
+                <div class="countdown-title">⏰ Esta proposta expira em:</div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Dias</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Horas</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Min</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seg</div>
+                    </div>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Horas</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Min</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Seg</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Features -->
-        <section>
-            <h2 class="section-title">O que você <span>vai receber</span></h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>Assistente IA Personalizado</h3>
-                    <p>IA treinada com suas conversas reais, catálogo de produtos e tom de voz da sua marca.</p>
-                    <span class="feature-tag">Atendimento 24h</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>CRM Integrado</h3>
-                    <p>Tags automáticas, histórico completo de cada cliente, organização inteligente de leads.</p>
-                    <span class="feature-tag">Gestão de Clientes</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Follow-ups Automáticos</h3>
-                    <p>Recuperação automática de leads frios, lembretes personalizados e sequências de nutrição.</p>
-                    <span class="feature-tag">Mais Vendas</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎙️</div>
-                    <h3>Áudios Personalizados</h3>
-                    <p>Mensagens de áudio com a sua própria voz nos momentos estratégicos do atendimento.</p>
-                    <span class="feature-tag">Humanização</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🛒</div>
-                    <h3>Catálogo Completo</h3>
-                    <p>Todos os seus produtos cadastrados com variações (cores, tamanhos), preços e disponibilidade.</p>
-                    <span class="feature-tag">Venda Automática</span>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Transferência Inteligente</h3>
-                    <p>IA identifica quando passar para atendimento humano em casos específicos.</p>
-                    <span class="feature-tag">Controle Total</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- How it Works -->
-        <section class="steps">
-            <h2 class="section-title">Como <span>funciona</span></h2>
-            
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h4>Análise & Planejamento</h4>
-                    <p>Estudamos suas conversas, produtos e forma de atender para criar a IA perfeita.</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h4>Desenvolvimento & Treinamento</h4>
-                    <p>Construímos e treinamos a IA com seu catálogo e padrão de atendimento.</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h4>Testes & Ajustes</h4>
-                    <p>Período de testes com ajustes finos para garantir atendimento impecável.</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h4>Lançamento & Suporte</h4>
-                    <p>Ativamos no seu WhatsApp + 3 meses de suporte e otimizações inclusas.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Investment -->
-        <section class="investment">
-            <div class="investment-label">Investimento único</div>
-            <div class="investment-price"><span>R$</span> 2.800</div>
-            <div class="investment-terms">40% na aprovação • 60% na entrega</div>
-            
-            <div class="investment-includes">
-                <h4>O que está incluído:</h4>
-                <ul>
-                    <li>Assistente IA completo e personalizado</li>
-                    <li>CRM com tags e histórico de clientes</li>
-                    <li>Sistema de follow-ups automáticos</li>
-                    <li>Integração de áudios personalizados</li>
-                    <li>Catálogo completo de produtos</li>
-                    <li>3 meses de suporte pós-lançamento</li>
-                    <li>Treinamento para usar a ferramenta</li>
+            <!-- Problem Section -->
+            <section class="problem-section">
+                <h2 class="section-title">Você já passou por isso?</h2>
+                <ul class="problem-list">
+                    <li>Perder vendas porque não conseguiu responder a tempo</li>
+                    <li>Clientes perguntando as mesmas coisas repetidamente</li>
+                    <li>Não ter tempo para fazer follow-up com leads</li>
+                    <li>Perder o histórico de conversas e preferências dos clientes</li>
+                    <li>Não conseguir atender de madrugada ou fins de semana</li>
                 </ul>
-            </div>
-        </section>
+            </section>
 
-        <!-- CTA -->
-        <a href="https://wa.me/5511999999999?text=Oi!%20Vi%20a%20proposta%20da%20IA%20e%20quero%20come%C3%A7ar!" class="cta-button">
-            ✅ QUERO COMEÇAR AGORA
-        </a>
-        <p class="cta-subtext">Resposta em até 2 horas no WhatsApp</p>
+            <!-- Solution - Features -->
+            <section>
+                <h2 class="section-title">A <span>solução completa</span></h2>
 
-        <!-- Guarantee -->
-        <section class="guarantee">
-            <div class="guarantee-icon">🛡️</div>
-            <h3>Garantia de Satisfação</h3>
-            <p>Se após os testes você não estiver satisfeito, devolvemos 100% do valor pago. Sem burocracia.</p>
-        </section>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Assistente IA Personalizado</h3>
+                        <p>IA treinada com suas conversas reais, usando seu tom de voz e conhecendo cada detalhe dos
+                            seus produtos.</p>
+                        <ul class="feature-details">
+                            <li>Treinamento com conversas reais da sua marca</li>
+                            <li>Respostas no seu tom de voz</li>
+                            <li>Atendimento humanizado 24h</li>
+                        </ul>
+                        <span class="feature-tag">Atendimento 24h</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🛒</div>
+                        <h3>Catálogo Completo Integrado</h3>
+                        <p>Todos os seus produtos cadastrados com cores, tamanhos, preços e disponibilidade em tempo
+                            real.</p>
+                        <ul class="feature-details">
+                            <li>Variações de cores e tamanhos</li>
+                            <li>Preços atualizados automaticamente</li>
+                            <li>Fotos e descrições detalhadas</li>
+                        </ul>
+                        <span class="feature-tag">Venda Automática</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>CRM Integrado</h3>
+                        <p>Sistema completo de gestão de clientes com tags automáticas e histórico completo de
+                            interações.</p>
+                        <ul class="feature-details">
+                            <li>Tags automáticas por comportamento</li>
+                            <li>Histórico completo de cada cliente</li>
+                            <li>Organização inteligente de leads</li>
+                        </ul>
+                        <span class="feature-tag">Gestão de Clientes</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Follow-ups Automáticos</h3>
+                        <p>Recuperação automática de leads frios e carrinho abandonado com sequências personalizadas.
+                        </p>
+                        <ul class="feature-details">
+                            <li>Recuperação de leads frios</li>
+                            <li>Lembretes de carrinho abandonado</li>
+                            <li>Sequências de nutrição automáticas</li>
+                        </ul>
+                        <span class="feature-tag">+30% Conversão</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎙️</div>
+                        <h3>Áudios Personalizados</h3>
+                        <p>Mensagens de áudio gravadas com a sua própria voz, enviadas em momentos estratégicos.</p>
+                        <ul class="feature-details">
+                            <li>Áudios com sua voz real</li>
+                            <li>Momentos estratégicos de envio</li>
+                            <li>Conexão mais humanizada</li>
+                        </ul>
+                        <span class="feature-tag">Humanização</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Transferência Inteligente</h3>
+                        <p>A IA identifica automaticamente quando é necessário transferir para atendimento humano.</p>
+                        <ul class="feature-details">
+                            <li>Casos complexos identificados</li>
+                            <li>Notificação em tempo real</li>
+                            <li>Histórico preservado na transferência</li>
+                        </ul>
+                        <span class="feature-tag">Controle Total</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="tech-section">
+                <h2 class="section-title">Tecnologia de <span>ponta</span></h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="icon">🧠</div>
+                        <h4>GPT Avançado</h4>
+                        <p>Última geração de IA</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">💬</div>
+                        <h4>ReplyAgente</h4>
+                        <p>Plataforma WhatsApp</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">⚡</div>
+                        <h4>Tempo Real</h4>
+                        <p>Respostas instantâneas</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">🔒</div>
+                        <h4>100% Seguro</h4>
+                        <p>Dados protegidos</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How it Works -->
+            <section class="steps">
+                <h2 class="section-title">Como <span>funciona</span></h2>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Análise & Planejamento</h4>
+                        <p>Estudamos suas conversas, produtos e forma de atender para criar a IA perfeita para seu
+                            negócio.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Desenvolvimento & Treinamento</h4>
+                        <p>Construímos e treinamos a IA com seu catálogo completo e padrão de atendimento.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Testes & Ajustes</h4>
+                        <p>Período de testes rigorosos com ajustes finos para garantir atendimento impecável.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Lançamento & Suporte</h4>
+                        <p>Ativamos no seu WhatsApp + treinamento para você usar + 3 meses de suporte contínuo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Highlight -->
+            <section class="support-section">
+                <h3>Suporte Pós-Lançamento</h3>
+                <div class="support-highlight">3 MESES</div>
+                <p style="color: var(--text-muted);">De acompanhamento, otimizações e ajustes inclusos</p>
+            </section>
+
+            <!-- Investment -->
+            <section class="investment">
+                <div class="investment-label">Investimento único</div>
+                <div class="investment-price"><span>R$</span> 2.800</div>
+
+                <div class="payment-details">
+                    <div class="payment-box">
+                        <div class="label">Na aprovação</div>
+                        <div class="value">40% (R$ 1.120)</div>
+                    </div>
+                    <div class="payment-box">
+                        <div class="label">Na entrega</div>
+                        <div class="value">60% (R$ 1.680)</div>
+                    </div>
+                </div>
+
+                <div class="investment-includes">
+                    <h4>✅ O que está incluído:</h4>
+                    <ul>
+                        <li>Assistente IA completo e personalizado</li>
+                        <li>Treinamento com suas conversas reais</li>
+                        <li>CRM com tags e histórico de clientes</li>
+                        <li>Sistema de follow-ups automáticos</li>
+                        <li>Integração de áudios personalizados</li>
+                        <li>Catálogo completo de produtos</li>
+                        <li>3 meses de suporte pós-lançamento</li>
+                        <li>Treinamento para usar a ferramenta</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Client Costs -->
+            <section class="client-costs">
+                <h4>💡 Custos por sua conta (mensais):</h4>
+                <div class="cost-item">
+                    <span class="name">ReplyAgente (mensalidade)</span>
+                    <span class="price">~R$ 97/mês</span>
+                </div>
+                <div class="cost-item">
+                    <span class="name">Tokens GPT (uso da IA)</span>
+                    <span class="price">~R$ 30-80/mês*</span>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">*Varia conforme volume de
+                    atendimentos</p>
+            </section>
+
+            <!-- CTA -->
+            <a href="https://wa.me/5583996333896?text=Oi!%20Vi%20a%20proposta%20da%20IA%20de%20vendas%20e%20quero%20come%C3%A7ar!"
+                class="cta-button">
+                ✅ QUERO COMEÇAR AGORA
+            </a>
+            <p class="cta-subtext">Clique para falar direto no WhatsApp</p>
+
+            <!-- Guarantee -->
+            <section class="guarantee">
+                <div class="guarantee-icon">🛡️</div>
+                <h3>Garantia de Satisfação</h3>
+                <p>Se após os testes você não estiver satisfeito com o resultado, devolvemos 100% do valor pago. Sem
+                    burocracia.</p>
+            </section>
+        </div>
+
+        <footer>
+            <p>Proposta exclusiva e intransferível</p>
+            <p style="margin-top: 8px; opacity: 0.6;">© 2026 — Desenvolvido com ❤️</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>Proposta exclusiva e intransferível</p>
-        <p style="margin-top: 8px; opacity: 0.6;">© 2026 — Desenvolvido com ❤️</p>
-    </footer>
 
     <script>
-        // Countdown Timer - 3 days from page load (or saved deadline)
+        // Countdown Timer - 3 days from first visit (fixed deadline)
         function initCountdown() {
-            const STORAGE_KEY = 'proposal_deadline';
+            const STORAGE_KEY = 'proposal_deadline_v2';
             let deadline;
-            
+
             // Check for existing deadline in localStorage
             const savedDeadline = localStorage.getItem(STORAGE_KEY);
-            
+
             if (savedDeadline) {
                 deadline = new Date(savedDeadline);
-                // If deadline has passed, set new one
-                if (deadline < new Date()) {
-                    deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-                    localStorage.setItem(STORAGE_KEY, deadline.toISOString());
-                }
             } else {
                 // First visit - set 3 day deadline
                 deadline = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
                 localStorage.setItem(STORAGE_KEY, deadline.toISOString());
             }
 
-            function updateCountdown() {
+            function checkExpiration() {
                 const now = new Date();
                 const diff = deadline - now;
 
                 if (diff <= 0) {
-                    document.getElementById('days').textContent = '00';
-                    document.getElementById('hours').textContent = '00';
-                    document.getElementById('minutes').textContent = '00';
-                    document.getElementById('seconds').textContent = '00';
-                    document.querySelector('.countdown-title').textContent = '⚠️ PROPOSTA EXPIRADA!';
-                    return;
+                    // EXPIRED - Show overlay and hide content
+                    document.getElementById('expiredOverlay').classList.add('show');
+                    document.getElementById('mainContent').style.display = 'none';
+                    return true;
                 }
+                return false;
+            }
+
+            function updateCountdown() {
+                if (checkExpiration()) return;
+
+                const now = new Date();
+                const diff = deadline - now;
 
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -642,12 +1001,16 @@
                 document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
             }
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            // Check immediately on load
+            if (!checkExpiration()) {
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
         }
 
         // Initialize
         initCountdown();
     </script>
 </body>
+
 </html>
